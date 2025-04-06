@@ -37,7 +37,7 @@ class UserController {
         return userService.update(user)
     }
 
-    @RequestMapping(value = ["/{id}"], method = [RequestMethod.PUT],
+    @RequestMapping(value = ["/{id}"], method = [RequestMethod.DELETE],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE])
     fun delete(@PathVariable(value = "id") id: Long){
