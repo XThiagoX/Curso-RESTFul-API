@@ -1,6 +1,6 @@
 package br.com.project_curso.UserModel.controller
 
-import br.com.project_curso.UserModel.Model.User
+import br.com.project_curso.UserModel.model.User
 import br.com.project_curso.UserModel.services.UserServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
