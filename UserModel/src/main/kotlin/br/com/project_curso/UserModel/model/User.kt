@@ -15,13 +15,13 @@ data class User (
     var id : Long? = 0,
 
     @Column(name = "fist_name", nullable = false)
-    var fistName : String? = "",
+    var firstName : String? = "",
 
     @Column(name = "last_name")
     var lastName : String? = "",
 
     @Column(nullable = false, length = 100)
-    var edress : String? = "",
+    var address : String? = "",
 
     @Column
     var gender : String? = ""

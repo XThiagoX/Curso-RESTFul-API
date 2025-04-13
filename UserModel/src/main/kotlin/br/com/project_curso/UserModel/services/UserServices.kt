@@ -25,7 +25,7 @@ class UserServices(
     }
 
     fun create(user: User): User {
-        logger.info("Creating one person with name ${user.fistName}")
+        logger.info("Creating one person with name ${user.firstName}")
         return repository.save(user)
     }
 
@@ -34,9 +34,9 @@ class UserServices(
         val entity = repository.findById(user.id!!)
             .orElseThrow { ResourceNotFoundException("No Records found for this ID!") }
 
-        entity.fistName = user.fistName
+        entity.firstName = user.firstName
         entity.lastName = user.lastName
-        entity.edress = user.edress
+        entity.address = user.address
         entity.gender = user.gender
         return repository.save(entity)
     }
