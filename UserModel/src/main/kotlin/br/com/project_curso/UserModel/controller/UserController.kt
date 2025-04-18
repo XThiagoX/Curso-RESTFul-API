@@ -1,7 +1,9 @@
-package br.com.project_curso.UserModel.controller
+package br.com.project_curso.UserVOModel.controller
 
-import br.com.project_curso.UserModel.model.User
+import br.com.project_curso.UserModel.data.vo.v1.UserVO
 import br.com.project_curso.UserModel.services.UserServices
+import br.com.project_curso.UserVOModel.model.UserVO
+import br.com.project_curso.UserVOModel.services.UserServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -16,43 +18,43 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/user")
-class UserController {
+@RequestMapping("/UserVO")
+class UserVOController {
 
     // spring injeta a instância dessa variável posteriormente
     @Autowired
-    private lateinit var userService : UserServices
+    private lateinit var UserService : UserServices
 
     @GetMapping( "/{id}",
         produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun findUser(@PathVariable(value = "id") id : Long): User{
-        return userService.findById(id)
+    fun findUserVO(@PathVariable(value = "id") id : Long): UserVO{
+        return UserService.findById(id)
     }
 
     @GetMapping(value = ["/"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun findAllUsers(): List<User>{
-        return userService.findAll()
+    fun findAllUserVOs(): List<UserVO>{
+        return UserService.findAll()
     }
 
     @PostMapping("/",
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun create(@RequestBody user: User): User{
-        return userService.create(user)
+    fun create(@RequestBody UserVO: UserVO): UserVO{
+        return UserService.create(UserVO)
     }
 
     @PutMapping(value = ["/{id}"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun update(@RequestBody user: User): User{
-        return userService.update(user)
+    fun update(@RequestBody UserVO: UserVO): UserVO{
+        return UserService.update(UserVO)
     }
 
     @DeleteMapping(value = ["/{id}"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE])
     fun delete(@PathVariable(value = "id") id: Long): ResponseEntity<*>{
-        userService.delete(id)
+        UserService.delete(id)
         return ResponseEntity.noContent().build<Any>()
     }
 }
