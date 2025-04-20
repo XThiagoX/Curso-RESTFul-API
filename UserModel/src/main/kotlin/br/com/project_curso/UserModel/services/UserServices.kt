@@ -1,6 +1,6 @@
-package br.com.project_curso.UserModel.services
+package br.com.project_curso.UserVOModel.services
 
-import br.com.project_curso.UserModel.model.User
+import br.com.project_curso.UserModel.data.vo.v1.UserVO
 import br.com.project_curso.UserModel.exceptions.ResourceNotFoundException
 import br.com.project_curso.UserModel.repository.UserRepository
 import org.springframework.stereotype.Service
@@ -13,23 +13,23 @@ class UserServices(
 
     private val logger = Logger.getLogger(UserServices::class.java.name)
 
-    fun findById(id: Long): User {
+    fun findById(id: Long): UserVO {
         logger.info("Finding one user")
         return repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No Records found for this ID!") }
     }
 
-    fun findAll(): List<User> {
+    fun findAll(): List<UserVO> {
         logger.info("Finding all users")
         return repository.findAll()
     }
 
-    fun create(user: User): User {
+    fun create(user: UserVO): UserVO {
         logger.info("Creating one person with name ${user.firstName}")
         return repository.save(user)
     }
 
-    fun update(user: User): User {
+    fun update(user: UserVO): UserVO {
         logger.info("Update one person with id: ${user.id}")
         val entity = repository.findById(user.id!!)
             .orElseThrow { ResourceNotFoundException("No Records found for this ID!") }
