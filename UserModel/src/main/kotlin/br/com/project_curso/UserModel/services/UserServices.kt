@@ -2,6 +2,8 @@ package br.com.project_curso.UserVOModel.services
 
 import br.com.project_curso.UserModel.data.vo.v1.UserVO
 import br.com.project_curso.UserModel.exceptions.ResourceNotFoundException
+import br.com.project_curso.UserModel.mapper.DozerMapper
+import br.com.project_curso.UserModel.model.User
 import br.com.project_curso.UserModel.repository.UserRepository
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
@@ -15,18 +17,21 @@ class UserServices(
 
     fun findById(id: Long): UserVO {
         logger.info("Finding one user")
-        return repository.findById(id)
+        val users = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No Records found for this ID!") }
+        return DozerMapper.parseObject( users, UserVO::class.java)
     }
 
     fun findAll(): List<UserVO> {
         logger.info("Finding all users")
-        return repository.findAll()
+        val users = repository.findAll()
+        return DozerMapper.parseListObject(users, UserVO::class.java)
     }
 
     fun create(user: UserVO): UserVO {
         logger.info("Creating one person with name ${user.firstName}")
-        return repository.save(user)
+        var entity : User = DozerMapper.parseObject(user, User::class.java)
+        return DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
     }
 
     fun update(user: UserVO): UserVO {
@@ -38,7 +43,8 @@ class UserServices(
         entity.lastName = user.lastName
         entity.address = user.address
         entity.gender = user.gender
-        return repository.save(entity)
+
+        return DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
     }
 
     fun delete(id: Long) {
