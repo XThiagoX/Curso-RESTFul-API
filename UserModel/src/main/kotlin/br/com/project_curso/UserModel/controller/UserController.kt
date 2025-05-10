@@ -1,7 +1,7 @@
-package br.com.project_curso.UserVOModel.controller
+package br.com.project_curso.UserModel.controller
 
 import br.com.project_curso.UserModel.data.vo.v1.UserVO
-import br.com.project_curso.UserVOModel.services.UserServices
+import br.com.project_curso.UserModel.services.UserServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/UserVO")
+@RequestMapping("/user")
 class UserController {
 
     // spring injeta a instância dessa variável posteriormente

@@ -1,4 +1,4 @@
-package br.com.project_curso.UserVOModel.services
+package br.com.project_curso.UserModel.services
 
 import br.com.project_curso.UserModel.data.vo.v1.UserVO
 import br.com.project_curso.UserModel.exceptions.ResourceNotFoundException
