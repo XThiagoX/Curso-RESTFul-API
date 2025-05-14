@@ -1,6 +1,7 @@
 package br.com.project_curso.UserModel.controller
 
 import br.com.project_curso.UserModel.data.vo.v1.UserVO
+import br.com.project_curso.UserModel.data.vo.v2.UserVO as UserVersion2
 import br.com.project_curso.UserModel.services.UserServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -34,11 +35,18 @@ class UserController {
         return UserService.findAll()
     }
 
-    @PostMapping("/",
+    @PostMapping(value = ["/"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE])
     fun create(@RequestBody UserVO: UserVO): UserVO{
         return UserService.create(UserVO)
+    }
+
+    @PostMapping(value = ["/v2"],
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun createVersion2(@RequestBody user: UserVersion2): UserVersion2{
+        return UserService.createVersion2(user)
     }
 
     @PutMapping(value = ["/{id}"],
