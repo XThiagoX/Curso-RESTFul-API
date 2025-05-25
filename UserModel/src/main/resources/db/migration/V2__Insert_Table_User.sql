@@ -1,3 +1,4 @@
+
 INSERT INTO `users` (id, first_name, gender, last_name, address)
 VALUES
   (1,'Dona Paula','female','Traz','Bahia'),
