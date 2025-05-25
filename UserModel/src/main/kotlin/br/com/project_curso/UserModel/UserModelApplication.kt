@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @SpringBootApplication
 @EntityScan("br.com.project_curso.UserModel.model")
 @EnableJpaRepositories("br.com.project_curso.UserModel.repository")
-@ComponentScan("br.com.project_curso.UserModel")
 class UserModelApplication
 
 fun main(args: Array<String>) {
