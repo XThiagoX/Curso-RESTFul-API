@@ -1,5 +1,8 @@
+.gitignore
+bash_script.sh
 HELP.md
 target/
+projeto.txt
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
