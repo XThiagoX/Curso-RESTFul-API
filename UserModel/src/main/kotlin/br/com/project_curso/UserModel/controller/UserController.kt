@@ -25,40 +25,40 @@ class UserController {
     private lateinit var UserService : UserServices
 
     @GetMapping( "/{id}",
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun findUserVO(@PathVariable(value = "id") id : Long): UserVO{
         return UserService.findById(id)
     }
 
-    @GetMapping(value = ["/"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @GetMapping(value = ["/"], produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun findAllUserVOs(): List<UserVO>{
         return UserService.findAll()
     }
 
     @PostMapping(value = ["/"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun create(@RequestBody UserVO: UserVO): UserVO{
         return UserService.create(UserVO)
     }
 
     @PostMapping(value = ["/v2"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun createVersion2(@RequestBody user: UserVersion2): UserVersion2{
         return UserService.createVersion2(user)
     }
 
     @PutMapping(value = ["/{id}"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun update(@RequestBody UserVO: UserVO): UserVO{
         return UserService.update(UserVO)
     }
 
     @DeleteMapping(value = ["/{id}"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun delete(@PathVariable(value = "id") id: Long): ResponseEntity<*>{
         UserService.delete(id)
         return ResponseEntity.noContent().build<Any>()
