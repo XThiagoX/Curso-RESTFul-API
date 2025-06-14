@@ -43,7 +43,10 @@ class UserServices(
     fun create(user: UserVO): UserVO {
         logger.info("Creating one person with name ${user.firstName}")
         var entity : User = DozerMapper.parseObject(user, User::class.java)
-        return DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
+        val userVO: UserVO = DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
+        val withSelfRel = linkTo(UserController::class.java).slash(userVO.key).withSelfRel()
+        userVO.add(withSelfRel)
+        return userVO
     }
 
     fun createVersion2(user: UserVersion2): UserVersion2 {
@@ -62,7 +65,10 @@ class UserServices(
         entity.address = user.address
         entity.gender = user.gender
 
-        return DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
+        val userVO : UserVO = DozerMapper.parseObject(repository.save(entity), UserVO::class.java)
+        val withSelfRel = linkTo(UserController::class.java).slash(userVO.key).withSelfRel()
+        userVO.add(withSelfRel)
+        return userVO
     }
 
     fun delete(id: Long) {
