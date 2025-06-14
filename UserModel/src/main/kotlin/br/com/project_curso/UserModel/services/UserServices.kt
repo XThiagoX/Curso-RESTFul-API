@@ -37,7 +37,12 @@ class UserServices(
     fun findAll(): List<UserVO> {
         logger.info("Finding all users")
         val users = repository.findAll()
-        return DozerMapper.parseListObject(users, UserVO::class.java)
+        val usersVOs = DozerMapper.parseListObject(users, UserVO::class.java)
+        for (user in usersVOs) {
+            val withSerfRel = linkTo(UserController::class.java).slash(user.key).withSelfRel()
+            user.add(withSerfRel)
+        }
+        return usersVOs
     }
 
     fun create(user: UserVO): UserVO {
